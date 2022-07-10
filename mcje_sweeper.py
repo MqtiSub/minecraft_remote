@@ -367,6 +367,8 @@ class MineSweeper():
         # ゲーム中フラグをFalseに設定
         self.play_game = False
 
+        self.mjs.game_clear()
+        
         # メッセージを表示
         messagebox.showinfo(
             "ゲームクリア",

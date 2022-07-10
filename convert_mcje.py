@@ -121,8 +121,10 @@ class MCJESweeper():
 
 
     def game_over(self):
-        self.mc.postToChat("YOU LOSE,俺の勝ち、なんで負けたか明日までに考えといてください。ほな頂きます。")
-
+        self.mc.postToChat("YOU LOSE")
+    
+    def game_clear(self):
+        self.mc.postToChat("YOU WIN")
 
 if __name__ == '__main__':
     BOARD_WIDTH, BOARD_HEIGHT = 20, 10
