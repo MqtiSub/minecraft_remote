@@ -70,3 +70,6 @@ font_design = {
 
 if __name__ == '__main__':
     print(font_design[1])
+    for a in font_design[1]:
+        print(a)
+    
