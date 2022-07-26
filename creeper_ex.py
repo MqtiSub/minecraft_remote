@@ -17,6 +17,7 @@ creeper_design = [
     '  0  0  ',
 ]
 
+print("creeper_ex loaded!!")
     
 def creeper_set(mc,x,y,z,var,neg,code,cube_core,head_block=param.GOLD_BLOCK,parts_block=param.LIME_CONCRETE):
     if var == 'x' and neg == 'y' or var == 'y' and neg == 'x':
