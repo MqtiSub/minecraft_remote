@@ -6,7 +6,8 @@ from convert_mcje import MCJESweeper
 from mcje.minecraft import Minecraft
 import param_MCJE as param
 
-
+#軽量化設定
+EFFICIENCY = False
 # 各種設定
 BOARD_WIDTH = 20
 BOARD_HEIGHT = 10
@@ -399,7 +400,8 @@ class MineSweeper():
                 )
                 self.mjs.cell_open(j,i)
                 self.mjs.check_mine(self.cells[j][i],j,i)
-        self.mjs.bomb_eff(mine_sel)
+        if EFFICIENCY == False:
+            self.mjs.bomb_eff(mine_sel)
 
                 
 
