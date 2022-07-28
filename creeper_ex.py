@@ -19,7 +19,11 @@ creeper_design = [
 
 print("creeper_ex loaded!!")
     
-def creeper_set(mc,x,y,z,var,neg,code,cube_core,head_block=param.GOLD_BLOCK,parts_block=param.LIME_CONCRETE):
+def creeper_set(mc,x,y,z,var='x',neg='y',code=POSITIVE,core={},head_block=param.GOLD_BLOCK,parts_block=param.LIME_CONCRETE):
+    if core == {}:
+        cube_core = get_core(x,y,z)
+    else:
+        cube_core = core
     if var == 'x' and neg == 'y' or var == 'y' and neg == 'x':
         Zlength = numpy.sign(cube_core['z'] - z)*(FACE_FLAME-1)
     elif var == 'z' and neg == 'y' or var == 'y' and neg == 'z':
@@ -64,10 +68,13 @@ def creeper_set(mc,x,y,z,var,neg,code,cube_core,head_block=param.GOLD_BLOCK,part
     time.sleep(5)
     mc.setBlocks(x,y,z,x + Xlength,y + Ylength,z + Zlength,param.AIR)
 
+def get_core(x,y,z):
+    return {'x':x + math.ceil(FACE_FLAME/2),
+            'y':y - math.ceil(FACE_FLAME/2),
+            'z':z - math.ceil(FACE_FLAME/2),}
+
 def creeper_turn(mc,x,y,z):
-    cube_core = {'x':x + math.ceil(FACE_FLAME/2),
-                 'y':y - math.ceil(FACE_FLAME/2),
-                 'z':z - math.ceil(FACE_FLAME/2),}
+    cube_core = get_core(x,y,z)
     mc.postToChat("x -> ~"+str(FACE_FLAME)+",y -> ~-"+str(FACE_FLAME)+",z -> ~"+str(FACE_FLAME)+", "+str(FACE_FLAME)+"^3 cube")
     Ax = x ; Ay = y ; Az = z
     creeper_set(mc,Ax,Ay,Az,'x','y',POSITIVE,cube_core)
@@ -84,4 +91,5 @@ def creeper_turn(mc,x,y,z):
 
 if __name__ == '__main__':
     mc = Minecraft.create(port=param.PORT_MC)
+    creeper_set(mc,0,80,0)
     creeper_turn(mc,0,80,0)
