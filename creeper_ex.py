@@ -1,11 +1,12 @@
 import math
 import numpy
-import time
+from time import sleep
 from mcje.minecraft import Minecraft
 import param_MCJE as param
 FACE_FLAME = 8
 POSITIVE = 1
 NEGATIVE = -1
+second = 3
 creeper_design = [
     '        ',
     '        ',
@@ -19,7 +20,7 @@ creeper_design = [
 
 print("creeper_ex loaded!!")
     
-def creeper_set(mc,x,y,z,var='x',neg='y',code=POSITIVE,core={},head_block=param.GOLD_BLOCK,parts_block=param.LIME_CONCRETE):
+def creeper_set(mc,x,y,z,var='x',neg='y',code=POSITIVE,core={},head_block=param.LIME_GLASS,parts_block=param.COAL_BLOCK):
     if core == {}:
         cube_core = get_core(x,y,z)
     else:
@@ -65,7 +66,7 @@ def creeper_set(mc,x,y,z,var='x',neg='y',code=POSITIVE,core={},head_block=param.
             mc.setBlock(Ax,Ay,Az,block_color_id)
             dot_offset += 1
         line_offset += 1
-    time.sleep(5)
+    sleep(second)
     mc.setBlocks(x,y,z,x + Xlength,y + Ylength,z + Zlength,param.AIR)
 
 def get_core(x,y,z):
@@ -78,15 +79,15 @@ def creeper_turn(mc,x,y,z):
     mc.postToChat("x -> ~"+str(FACE_FLAME)+",y -> ~-"+str(FACE_FLAME)+",z -> ~"+str(FACE_FLAME)+", "+str(FACE_FLAME)+"^3 cube")
     Ax = x ; Ay = y ; Az = z
     creeper_set(mc,Ax,Ay,Az,'x','y',POSITIVE,cube_core)
-    Ax += FACE_FLAME
+    Ax += (FACE_FLAME-1)
     creeper_set(mc,Ax,Ay,Az,'z','y',NEGATIVE,cube_core)
-    Az -= FACE_FLAME
+    Az -= (FACE_FLAME-1)
     creeper_set(mc,Ax,Ay,Az,'x','y',NEGATIVE,cube_core)
-    Ax -= FACE_FLAME
+    Ax -= (FACE_FLAME-1)
     creeper_set(mc,Ax,Ay,Az,'z','y',POSITIVE,cube_core)
-    Ax += FACE_FLAME
+    Ax += (FACE_FLAME-1)
     creeper_set(mc,Ax,Ay,Az,'z','x',POSITIVE,cube_core) 
-    Ay -= FACE_FLAME ; Az += FACE_FLAME
+    Ay -= (FACE_FLAME-1) ; Az += (FACE_FLAME-1)
     creeper_set(mc,Ax,Ay,Az,'x','z',NEGATIVE,cube_core)
 
 if __name__ == '__main__':

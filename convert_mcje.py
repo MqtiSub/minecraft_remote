@@ -1,9 +1,10 @@
+import time
 from mcje.minecraft import Minecraft
 import param_MCJE as param
 import random
 from circle import setCircle
 from ms_font import font_design,FONT_HEIGHT,FONT_WIDTH
-import time
+from creeper_ex import creeper_set,get_core,POSITIVE,NEGATIVE,FACE_FLAME
 
 MASS_HEIGHT = FONT_HEIGHT + 2
 MASS_WIDTH = FONT_WIDTH + 4
@@ -118,11 +119,25 @@ class MCJESweeper():
                 bomb = False
             count+=1
 
+    def creeper_eff(self):
+        x = STA_X - 27 ; y = STA_Y + 10 ; z = STA_Z + 57
+        cube_core = get_core(x,y,z)
+        creeper_set(self.mc,x,y,z)
+        x += (FACE_FLAME-1) ; y += 5 ; cube_core['y'] += 5
+        creeper_set(self.mc,x,y,z,'z','y',NEGATIVE,cube_core)
+        z -= (FACE_FLAME-1) ; y += 5 ; cube_core['y'] += 5
+        creeper_set(self.mc,x,y,z,'x','y',NEGATIVE,cube_core)
+        x -= (FACE_FLAME-1) ; y += 5 ; cube_core['y'] += 5
+        creeper_set(self.mc,x,y,z,'z','y',POSITIVE,cube_core)
+        y += 5 ; cube_core['y'] += 5
+        creeper_set(self.mc,x,y,z,'z','y',POSITIVE,cube_core,param.TNT,param.REDSTONE_BLOCK)
+        
 
     def game_over(self):
         self.mc.postToChat("YOU LOSE")
     
     def game_clear(self):
+        self.creeper_eff()
         self.mc.postToChat("YOU WIN")
 
 if __name__ == '__main__':
@@ -131,3 +146,4 @@ if __name__ == '__main__':
     mjs = MCJESweeper(mc)
     mjs.set_cell(BOARD_WIDTH,BOARD_HEIGHT)
     mjs.check_mine(2,0,0)
+    mjs.game_clear()

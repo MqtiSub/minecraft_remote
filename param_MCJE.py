@@ -32,6 +32,7 @@ SEA_LANTERN_BLOCK = "sea_lantern"
 # some good blocks for grid like patterns you can count blocks easily
 GLASS = "glass"
 RED_GLASS = "red_stained_glass"
+LIME_GLASS = "lime_stained_glass"
 TNT = "tnt"
 DIAMOND_BLOCK = "diamnd_block"
 FURNACE_INACTIVE = "furnace"
