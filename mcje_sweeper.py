@@ -51,6 +51,7 @@ class MineSweeper():
         self.open_num = 0
         self.open_mine = False
         self.play_game = False
+        self.play_over = False
 
         # 地雷を管理するボード
         self.cells = None
@@ -79,6 +80,10 @@ class MineSweeper():
 
         # 最後にゲーム中フラグをTrueに設定
         self.play_game = True
+
+        text = input()
+        if text == 'sudo clear':
+            self.game_clear()
 
 
     # ボードの初期化
@@ -345,7 +350,8 @@ class MineSweeper():
 
     # ゲームオーバー時の処理
     def game_over(self):
-
+        #特定処理のためのTrue
+        self.play_over = True
         # 全マスを開く
         self.open_all()
 
@@ -400,7 +406,7 @@ class MineSweeper():
                 )
                 self.mjs.cell_open(j,i)
                 self.mjs.check_mine(self.cells[j][i],j,i)
-        if EFFICIENCY == False:
+        if EFFICIENCY == False and self.play_over == True:
             self.mjs.bomb_eff(mine_sel)
 
                 
