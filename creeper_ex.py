@@ -7,6 +7,8 @@ FACE_FLAME = 8
 POSITIVE = 1
 NEGATIVE = -1
 second = 3
+#デザインを追加、変更することで顔を変えることができます!
+#You can add or change designs.And Creeper smiles with different face!
 creeper_design = [
     '        ',
     '        ',
