@@ -1,6 +1,6 @@
 FONT_HEIGHT=5
 FONT_WIDTH =3
-
+#YOU CAN CHANGE THE DESIGNS...
 font_design = {
     -1:[
         '   ',
