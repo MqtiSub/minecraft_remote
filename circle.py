@@ -1,7 +1,8 @@
 from mcje.minecraft import Minecraft
 import param_MCJE as param
 import numpy as np
-
+#引数が(x,z,y)とかいう変な順番なので気を付けて
+#CAUTION!! PUT IN (x,z,y)...
 def setCircle(mc,ca,cb,cc,radius,block):
     i=0
     a=300
@@ -18,4 +19,4 @@ def setCircle(mc,ca,cb,cc,radius,block):
 
 if __name__ == '__main__':
     mc = Minecraft.create(port=param.PORT_MC)
-    setCircle(mc,0,0,0,8)
+    setCircle(mc,-82,142,59,13,param.LIME_CONCRETE)
