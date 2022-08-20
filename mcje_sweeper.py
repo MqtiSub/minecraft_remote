@@ -81,9 +81,9 @@ class MineSweeper():
         # 最後にゲーム中フラグをTrueに設定
         self.play_game = True
 
-        text = input()
-        if text == 'sudo clear':
-            self.game_clear()
+        #text = input()
+        #if text == 'sudo clear':
+        #    self.game_clear()
 
 
     # ボードの初期化
@@ -188,6 +188,7 @@ class MineSweeper():
                 # 右クリック時のイベント設定
                 # 右クリックが反応しない場合は第１引数を"<ButtonPress-3>"に変更してみてください
                 label.bind("<ButtonPress-3>", self.raise_flag)
+        self.labels[0][0].bind("<ButtonPress-2>", self.game_clear)
 
     # 右クリック時に実行する関数
     def raise_flag(self, event):
@@ -234,14 +235,12 @@ class MineSweeper():
 
     # 左クリック時に実行する関数
     def open_cell(self, event):
-
         # ゲーム中でなければ何もしない
         if not self.play_game:
             return
 
         # クリックされたラベルを取得
         label = event.widget
-
         # ラベルの座標を取得
         for y in range(self.height):
             for x in range(self.width):
@@ -366,8 +365,7 @@ class MineSweeper():
         )
 
     # ゲームクリア時の処理
-    def game_clear(self):
-
+    def game_clear(self,event):
         # 全マスを開く
         self.open_all()
 
