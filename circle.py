@@ -12,4 +12,4 @@ def setCircle(mc,ca,cb,cc,radius,block):
 
 if __name__ == '__main__':
     mc = Minecraft.create(port=param.PORT_MC)
-    setCircle(mc,-82,142,59,13,param.LIME_CONCRETE)
+    setCircle(mc,0,60,0,13,param.LIME_CONCRETE)
